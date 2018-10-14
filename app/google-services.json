@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "619306380403",
+    "firebase_url": "https://diplomate-d44ba.firebaseio.com",
+    "project_id": "diplomate-d44ba",
+    "storage_bucket": "diplomate-d44ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619306380403:android:4532d1c81bd40dc1",
+        "android_client_info": {
+          "package_name": "com.example.arunnagarajan.diplomate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619306380403-mmu6tclmh0iefespuasohleg8kgarr3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMxjW19CVa__rQakpVkfL3RQg-4TNeqIg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

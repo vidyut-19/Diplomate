@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Diplomate</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_login">Welcome to DiploMate</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+
+    <array name="sl_subjects">
+        <item>Language A: literature</item>
+        <item>Language A: language and literature</item>
+        <item>Literature and performance</item>
+
+        <item>Language B</item>
+        <item>Language ab initio</item>
+        <item>Classical languages</item>
+        <item>Business and management</item>
+        <item>Economics</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Information technology in a global society</item>
+        <item>Philosophy</item>
+        <item>Psychology</item>
+        <item>Social and cultural anthropology</item>
+        <item>World religions (SL only)</item>
+        <item>Environmental systems and societies</item>
+
+        <item>Biology</item>
+        <item>Chemistry</item>
+        <item>Design technology</item>
+        <item>Environmental systems and societies</item>
+        <item>Physics</item>
+        <item>Computer science</item>
+        <item>Sports, exercise and health science (SL only)</item>
+
+        <item>Mathematical studies SL</item>
+        <item>Mathematics SL</item>
+
+        <item>Music</item>
+        <item>Theatre</item>
+        <item>Visual arts</item>
+        <item>Dance</item>
+        <item>Film</item>
+        <item>Literature and performance</item>
+    </array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
+
