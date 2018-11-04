@@ -20,6 +20,7 @@
 
 
     <array name="sl_subjects">
+        <item>select SL Subject ...</item>
         <item>Language A: literature</item>
         <item>Language A: language and literature</item>
         <item>Literature and performance</item>
@@ -47,7 +48,45 @@
         <item>Sports, exercise and health science (SL only)</item>
 
         <item>Mathematical studies SL</item>
-        <item>Mathematics SL</item>
+        <item>Mathematics </item>
+
+        <item>Music</item>
+        <item>Theatre</item>
+        <item>Visual arts</item>
+        <item>Dance</item>
+        <item>Film</item>
+        <item>Literature and performance</item>
+    </array>
+
+
+    <array name="hl_subjects">
+        <item>select HL Subject ...</item>
+        <item>Language A: literature</item>
+        <item>Language A: language and literature</item>
+        <item>Literature and performance</item>
+
+        <item>Language B</item>
+        <item>Language ab initio</item>
+        <item>Classical languages</item>
+        <item>Business and management</item>
+        <item>Economics</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Information technology in a global society</item>
+        <item>Philosophy</item>
+        <item>Psychology</item>
+        <item>Social and cultural anthropology</item>
+        <item>Environmental systems and societies</item>
+
+        <item>Biology</item>
+        <item>Chemistry</item>
+        <item>Design technology</item>
+        <item>Environmental systems and societies</item>
+        <item>Physics</item>
+        <item>Computer science</item>
+        <item>Further Mathematics</item>
+
+        <item>Mathematics </item>
 
         <item>Music</item>
         <item>Theatre</item>

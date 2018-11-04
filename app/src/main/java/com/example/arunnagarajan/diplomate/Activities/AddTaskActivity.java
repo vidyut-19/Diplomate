@@ -1,18 +1,24 @@
 package com.example.arunnagarajan.diplomate.Activities;
 
 import android.app.DatePickerDialog;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.arunnagarajan.diplomate.Models.Task;
+import com.example.arunnagarajan.diplomate.Models.UserProfile;
 import com.example.arunnagarajan.diplomate.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -20,10 +26,12 @@ import java.util.Map;
 
 public class AddTaskActivity extends AppCompatActivity {
     FirebaseFirestore database = FirebaseFirestore.getInstance();
+    String email;
     Button Datebtn;
     TextView dateView;
 Button submitBtn  ;
 EditText taskName, descText;
+Spinner subject_spinner;
 FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,13 @@ FirebaseAuth mAuth;
         taskName = findViewById(R.id.taskName);
         descText = findViewById(R.id.descText);
 mAuth = FirebaseAuth.getInstance();
+email = mAuth.getCurrentUser().getEmail();
+database.collection("Users").document(email).collection("profile").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    @Override
+    public void onComplete(@NonNull com.google.android.gms.tasks.Task<QuerySnapshot> task) {
+
+    }
+});
         final DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
@@ -66,7 +81,7 @@ mAuth = FirebaseAuth.getInstance();
 
             ); Map<String,Task> map = new HashMap<>();
             map.put("Task", myTask);
-            database.collection("Users").document(mAuth.getCurrentUser().getEmail()).collection("Tasks").add(map);
+            database.collection("Users").document(mAuth.getCurrentUser().getEmail()).collection("Tasks").add(myTask);
         }
     });
 
