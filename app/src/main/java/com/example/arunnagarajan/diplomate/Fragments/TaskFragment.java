@@ -1,9 +1,12 @@
 package com.example.arunnagarajan.diplomate.Fragments;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -57,7 +60,7 @@ dataBasePointer.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot
             }
             Log.i("Success tasks", taskList.size()+"");
 
-            TaskListAdapter adapter = new TaskListAdapter(taskList);
+            TaskListAdapter adapter = new TaskListAdapter(taskList,getContext());
             Tasklistview.setHasFixedSize(true);
             Tasklistview.setLayoutManager(new LinearLayoutManager(getContext()));
             Tasklistview.setAdapter(adapter);
@@ -68,8 +71,34 @@ dataBasePointer.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot
         } else {
             Log.i("failed tasks", "get failed with"+ task.getException());
         }
+
     }
 });
+//        Tasklistview.setLongClickable(true);
+//Tasklistview.setOnLongClickListener(new View.OnLongClickListener() {
+//    @Override
+//    public boolean onLongClick(View v) {
+//
+//
+//
+//            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//            builder.setMessage("Are you sure you want to delete the task? You may not be done with it. Don't delete just because you don't like the subject or the teacher ")
+//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//
+//                        }
+//                    })
+//                    .setNegativeButton("Delete Task", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//                            // User cancelled the dialog
+//                        }
+//                    });
+//            // Create the AlertDialog object and return it
+//             builder.create();
+//             return true;
+//
+//    }
+//});
     }
 
     @Override
@@ -80,6 +109,9 @@ dataBasePointer.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot
         emptyTasktext =view.findViewById(R.id.emptyTasktext);
 
         return view;
+    }
+    {
+
     }
 
 }
