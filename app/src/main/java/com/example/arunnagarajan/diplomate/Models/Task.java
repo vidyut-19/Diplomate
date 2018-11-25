@@ -21,6 +21,7 @@ public class Task {
         this.name = name;
     }
 
+
     public String getDescription() {
         return description;
     }
@@ -31,6 +32,10 @@ public class Task {
 
     public String getDate() {
         return date;
+    }
+
+    public String getFormattedDate() {
+        return date.split("-")[0];
     }
 
     public void setDate(String date) {
