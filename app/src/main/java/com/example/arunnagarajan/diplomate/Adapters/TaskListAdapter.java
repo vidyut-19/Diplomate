@@ -32,7 +32,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int i) {
         taskViewHolder.taskName.setText(tasks.get(i).getName());
-        taskViewHolder.date.setText(tasks.get(i).getDate());
+        taskViewHolder.date.setText(tasks.get(i).getFormattedDate());
 
 
     }

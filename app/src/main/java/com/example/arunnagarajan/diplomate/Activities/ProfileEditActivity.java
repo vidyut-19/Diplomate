@@ -36,6 +36,7 @@ Spinner hl1, hl2, hl3, sl1, sl2, sl3;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
         firebaseAuth = FirebaseAuth.getInstance();
+//        database.collection("users").document(firebaseAuth.getCurrentUser().getEmail()).collection("profile");
         Name = findViewById(R.id.Name);
         emailID = findViewById(R.id.emailID);
         pickYear = findViewById(R.id.pickYear);
