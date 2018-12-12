@@ -3,6 +3,7 @@ package com.example.arunnagarajan.diplomate.Activities;
 import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -47,13 +48,15 @@ Spinner hl1, hl2, hl3, sl1, sl2, sl3;
         hl1 = findViewById(R.id.hl1);
         hl2 = findViewById(R.id.hl2);
         hl3 = findViewById(R.id.hl3);
-        emailID.setText(firebaseAuth.getCurrentUser().getEmail());
+        emailID.setText(firebaseAuth.getCurrentUser().  getEmail());
 
         dateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                if(i != 0) {
-                    pickYear.setText(i);
+
+               Log.d("testing", i + "");
+               if(i != 0) {
+                    pickYear.setText(i+"");
                 }
             }
         };

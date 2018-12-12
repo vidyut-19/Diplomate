@@ -115,7 +115,7 @@
         android:layout_marginTop="1dp"
         android:background="@drawable/spinner_item"
         android:entries="@array/hl_subjects"
-        app:layout_constraintTop_toBottomOf="@+id/pickYear"
+        app:layout_constraintTop_toBottomOf="@id/pickYear"
         tools:layout_editor_absoluteX="16dp" />
 
     <Button
