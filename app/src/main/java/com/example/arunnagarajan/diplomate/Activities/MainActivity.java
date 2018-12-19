@@ -15,10 +15,15 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.arunnagarajan.diplomate.Adapters.AlarmReceiver;
+import com.example.arunnagarajan.diplomate.Adapters.Notifications;
+import com.example.arunnagarajan.diplomate.Fragments.CalendarFragment;
 import com.example.arunnagarajan.diplomate.Fragments.TaskFragment;
 import com.example.arunnagarajan.diplomate.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,8 +52,8 @@ FrameLayout fragmentContainer;
                     mTextMessage.setText(R.string.title_dashboard);
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
+                    selectedFragment = new CalendarFragment();
+                    break;
             }
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
@@ -64,6 +69,12 @@ FrameLayout fragmentContainer;
         setContentView(R.layout.activity_main);
         addTaskbtn = findViewById(R.id.floatingActionButton);
         fragmentContainer = findViewById(R.id.frame);
+        Calendar calendar = Calendar.getInstance();
+        calendar.get(Calendar.MINUTE);
+
+
+        Notifications.setReminder(this, AlarmReceiver.class,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE) + 2);
+
         View.OnClickListener fabListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
