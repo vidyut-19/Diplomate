@@ -2,6 +2,8 @@ package com.example.arunnagarajan.diplomate.Activities;
 
 import android.app.DatePickerDialog;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.arunnagarajan.diplomate.Adapters.AlarmReceiver;
+import com.example.arunnagarajan.diplomate.Adapters.Notifications;
 import com.example.arunnagarajan.diplomate.Models.Task;
 import com.example.arunnagarajan.diplomate.Models.UserProfile;
 import com.example.arunnagarajan.diplomate.R;
@@ -32,6 +36,7 @@ public class AddTaskActivity extends AppCompatActivity {
 Button submitBtn  ;
 EditText taskName, descText;
 Spinner subject_spinner;
+ConstraintLayout layout;
 FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ FirebaseAuth mAuth;
         submitBtn = findViewById(R.id.submitBtn);
         taskName = findViewById(R.id.taskName);
         descText = findViewById(R.id.descText);
+        layout = findViewById(R.id.dateText);
 mAuth = FirebaseAuth.getInstance();
 email = mAuth.getCurrentUser().getEmail();
 database.collection("Users").document(email).collection("profile").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -74,16 +80,24 @@ database.collection("Users").document(email).collection("profile").get().addOnCo
     submitBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Task myTask = new Task(
-                    taskName.getText().toString(),
-                    descText.getText().toString(),
-                    dateView.getText().toString()
+            if(!taskName.getText().toString().isEmpty() && !dateView.getText().toString().isEmpty()) {
+                Task myTask = new Task(
+                        taskName.getText().toString(),
+                        descText.getText().toString(),
+                        dateView.getText().toString()
 
-            ); Map<String,Task> map = new HashMap<>();
-            map.put("Task", myTask);
-            database.collection("Users").document(mAuth.getCurrentUser().getEmail()).collection("Tasks").add(myTask);
+                );
+                Map<String, Task> map = new HashMap<>();
+                map.put("Task", myTask);
+                database.collection("Users").document(mAuth.getCurrentUser().getEmail()).collection("Tasks").add(myTask);
+//                Notifications.setReminder(this,AlarmReceiver.class, );
+            }else{
+                Snackbar.make(layout,"Please add task and select due date", Snackbar.LENGTH_SHORT).show();
+
+            }
         }
     });
+
 
 
     }

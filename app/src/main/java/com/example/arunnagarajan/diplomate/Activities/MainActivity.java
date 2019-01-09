@@ -41,16 +41,15 @@ FrameLayout fragmentContainer;
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFragment = null;
-            selectedFragment = new TaskFragment();
+            Fragment selectedFragment = new TaskFragment();
             //TODO verify this
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                    selectedFragment = new TaskFragment();
                     break;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
+                    selectedFragment = new TaskFragment();
+                    break;
                 case R.id.navigation_notifications:
                     selectedFragment = new CalendarFragment();
                     break;

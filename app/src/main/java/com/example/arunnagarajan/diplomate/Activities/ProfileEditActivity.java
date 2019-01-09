@@ -1,6 +1,7 @@
 package com.example.arunnagarajan.diplomate.Activities;
 
 import android.app.DatePickerDialog;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +14,12 @@ import android.widget.Spinner;
 import com.example.arunnagarajan.diplomate.Models.Task;
 import com.example.arunnagarajan.diplomate.Models.UserProfile;
 import com.example.arunnagarajan.diplomate.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -24,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ProfileEditActivity extends AppCompatActivity {
+    private static final String TAG = "APCheck";
     EditText Name, emailID;
     Button pickYear, saveBtn;
     FirebaseAuth firebaseAuth;
@@ -88,6 +94,27 @@ Spinner hl1, hl2, hl3, sl1, sl2, sl3;
             }
         };
         saveBtn.setOnClickListener(saveListener);
+
+        // get profile info to update!
+        DocumentReference docRef = database.collection("Users").document(firebaseAuth.getCurrentUser().getEmail());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null) {
+                        Log.d(TAG, task.getResult().getData().get("name").toString());
+                        Log.d(TAG, task.getResult().getData().toString());
+                        UserProfile user = task.getResult().toObject(UserProfile.class);
+//                        Log.d(TAG, user.getEmail());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+            });
     }
 
 
