@@ -4,9 +4,10 @@
 /.idea/libraries
 /.idea/modules.xml
 /.idea/misc.xml
-.idea/misc.xml
 /.idea/workspace.xml
 .DS_Store
 /build
 /captures
 .externalNativeBuild
+/.idea/caches/build_file_checksums.ser
+

@@ -19,6 +19,7 @@ import com.example.arunnagarajan.diplomate.Adapters.AlarmReceiver;
 import com.example.arunnagarajan.diplomate.Adapters.Notifications;
 import com.example.arunnagarajan.diplomate.Fragments.CalendarFragment;
 import com.example.arunnagarajan.diplomate.Fragments.TaskFragment;
+import com.example.arunnagarajan.diplomate.Fragments.WebFragment;
 import com.example.arunnagarajan.diplomate.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -48,7 +49,7 @@ FrameLayout fragmentContainer;
                    selectedFragment = new TaskFragment();
                     break;
                 case R.id.navigation_dashboard:
-                    selectedFragment = new TaskFragment();
+                    selectedFragment = new WebFragment();
                     break;
                 case R.id.navigation_notifications:
                     selectedFragment = new CalendarFragment();
