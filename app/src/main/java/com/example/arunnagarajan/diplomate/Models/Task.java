@@ -18,8 +18,21 @@ public class Task {
     public void markTaskAsDone(){
         this.status = true;
     }
-    String name, description, date;
+    String name;
+    String description;
+    String date;
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    String subject;
     Boolean status = false;
+
 
     public String getName() {
         return name;

@@ -2,14 +2,17 @@ package com.example.arunnagarajan.diplomate.Activities;
 
 import android.app.DatePickerDialog;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import com.example.arunnagarajan.diplomate.Models.Task;
 import com.example.arunnagarajan.diplomate.Models.UserProfile;
@@ -97,25 +100,43 @@ Spinner hl1, hl2, hl3, sl1, sl2, sl3;
 
         // get profile info to update!
         DocumentReference docRef = database.collection("Users").document(firebaseAuth.getCurrentUser().getEmail());
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null) {
-                        Log.d(TAG, task.getResult().getData().get("name").toString());
-                        Log.d(TAG, task.getResult().getData().toString());
-                        UserProfile user = task.getResult().toObject(UserProfile.class);
-//                        Log.d(TAG, user.getEmail());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map<String, Object> profileData = (Map<String, Object>) documentSnapshot.get("profile");
+                Log.d(TAG, ":TEst");
+                Log.d(TAG, profileData.get("subject").toString());
+                List<String> subjects = (List<String>) profileData.get("subject");
+                if(!subjects.isEmpty()) {
+                    Log.d(TAG, subjects.get(0));
                 }
+
+                selectSpinnerItemByValue(sl1, subjects.get(0));
+                selectSpinnerItemByValue(sl2, subjects.get(1));
+                selectSpinnerItemByValue(sl3, subjects.get(2));
+                selectSpinnerItemByValue(hl1, subjects.get(3));
+                selectSpinnerItemByValue(hl2, subjects.get(4));
+                selectSpinnerItemByValue(hl3, subjects.get(5));
+
+                emailID.setText(profileData.get("email").toString());
+                emailID.setEnabled(false);
+                pickYear.setText(profileData.get("examDate").toString());
+                Name.setText(profileData.get("name").toString());
+                Log.d(TAG, profileData.get("name").toString());
             }
-            });
+        });
     }
 
+    public static void selectSpinnerItemByValue(Spinner spnr, String value) {
+        ArrayAdapter adapter = (ArrayAdapter) spnr.getAdapter();
+        for (int position = 0; position < adapter.getCount(); position++) {
+            Log.d(TAG + "a", value);
+            Log.d(TAG + "b", adapter.getItem(position).toString());
+            if(adapter.getItem(position).toString().equals(value)) {
 
+                spnr.setSelection(position);
+                return;
+            }
+        }
+    }
 }
