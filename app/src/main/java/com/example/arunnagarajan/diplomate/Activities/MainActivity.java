@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton addTaskbtn;
 ImageButton ProfileEditButton;
 FrameLayout fragmentContainer;
-
+    WebFragment webFragment = new WebFragment();
     private TextView mTextMessage;
     FirebaseFirestore database = FirebaseFirestore.getInstance();
 
@@ -43,13 +43,14 @@ FrameLayout fragmentContainer;
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = new TaskFragment();
+
             //TODO verify this
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                    selectedFragment = new TaskFragment();
                     break;
                 case R.id.navigation_dashboard:
-                    selectedFragment = new WebFragment();
+                    selectedFragment =  webFragment;
                     break;
                 case R.id.navigation_notifications:
                     selectedFragment = new CalendarFragment();

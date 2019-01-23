@@ -53,6 +53,7 @@ public class AddTaskActivity extends AppCompatActivity {
         taskName = findViewById(R.id.taskName);
         descText = findViewById(R.id.descText);
         layout = findViewById(R.id.dateText);
+        subject_spinner = findViewById(R.id.subject_spinner);
         mAuth = FirebaseAuth.getInstance();
         email = mAuth.getCurrentUser().getEmail();
 String currentTimeString = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
