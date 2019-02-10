@@ -7,11 +7,14 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.example.arunnagarajan.diplomate.Adapters.AlarmReceiver;
@@ -20,15 +23,19 @@ import com.example.arunnagarajan.diplomate.Models.Task;
 import com.example.arunnagarajan.diplomate.Models.UserProfile;
 import com.example.arunnagarajan.diplomate.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AddTaskActivity extends AppCompatActivity {
@@ -56,12 +63,26 @@ public class AddTaskActivity extends AppCompatActivity {
         subject_spinner = findViewById(R.id.subject_spinner);
         mAuth = FirebaseAuth.getInstance();
         email = mAuth.getCurrentUser().getEmail();
-String currentTimeString = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        String currentTimeString = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
 
-        database.collection("Users").document(email).collection("profile").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+        final List<String> subs = new ArrayList<>();
+        DocumentReference docRef = database.collection("Users").document(firebaseAuth.getCurrentUser().getEmail());
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull com.google.android.gms.tasks.Task<QuerySnapshot> task) {
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map<String, Object> profileData = (Map<String, Object>) documentSnapshot.get("profile");
+
+                List<String> subjects = (List<String>) profileData.get("subject");
+                if (!subjects.isEmpty()) {
+                    Log.d("HELPER CLASS", subjects.get(0));
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddTaskActivity.this, android.R.layout.simple_list_item_1, subjects);
+
+
+                    subject_spinner.setAdapter(adapter);
+                }
 
             }
         });
@@ -96,9 +117,8 @@ String currentTimeString = new SimpleDateFormat("dd-MM-yyyy").format(new Date())
                     Task myTask = new Task(
                             taskName.getText().toString(),
                             descText.getText().toString(),
-                            dateView.getText().toString()
-
-
+                            dateView.getText().toString(),
+                            subject_spinner.getSelectedItem().toString()
                     );
                     Map<String, Task> map = new HashMap<>();
                     map.put("Task", myTask);

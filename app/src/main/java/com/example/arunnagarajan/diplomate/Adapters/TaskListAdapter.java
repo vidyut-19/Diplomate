@@ -20,13 +20,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
-FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<Task> tasks = new ArrayList<>();
     Context context;
+    String userEmail;
 
-    public TaskListAdapter(ArrayList<Task> tasks,Context context) {
+    public TaskListAdapter(ArrayList<Task> tasks, Context context) {
         this.tasks = tasks;
         this.context = context;
+
     }
 
 
@@ -41,7 +43,9 @@ FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int i) {
         taskViewHolder.taskName.setText(tasks.get(i).getName());
+
         taskViewHolder.date.setText(tasks.get(i).getFormattedDate());
+
 //        taskViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -77,27 +81,27 @@ FirebaseFirestore db = FirebaseFirestore.getInstance();
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
 
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
 
-                                                    }
-                                                });
+                                            }
+                                        });
 
 
-                                    }
-                                })
-                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        // User cancelled the dialog
-                                    }
-                                });
-                        // Create the AlertDialog object and return it
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
+                // Create the AlertDialog object and return it
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                        return true;
+                return true;
 
             }
         });

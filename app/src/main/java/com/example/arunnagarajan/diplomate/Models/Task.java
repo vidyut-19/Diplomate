@@ -22,6 +22,14 @@ public class Task {
     String description;
     String date;
 
+    public Task(String name, String description, String date, String subject) {
+        this.name = name;
+        this.description = description;
+        this.date = date;
+        this.subject = subject;
+        this.status = false;
+    }
+
     public String getSubject() {
         return subject;
     }

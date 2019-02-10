@@ -105,7 +105,7 @@ private CustomCalendar customCalendar;
             EventData dateData = new EventData();
             ArrayList<dataAboutDate> dataAboutDates = new ArrayList();
 
-            dateData.setSection(CalendarUtils.getNAMES()[new Random().nextInt(CalendarUtils.getNAMES().length)]);
+            dateData.setSection("Test Section");
             dataAboutDate dataAboutDate = new dataAboutDate();
 
             int index = new Random().nextInt(CalendarUtils.getEVENTS().length);
