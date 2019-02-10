@@ -67,7 +67,7 @@ private CustomCalendar customCalendar;
 
                     if(taskList.size() > 0)
                     { //emptyTasktext.setVisibility(View.GONE);
-                        customCalendar.addAnEvent("2019-01-10",3,getEventDataList(3));
+                        customCalendar.addAnEvent(taskList.get(0).getDate(),3,getEventDataList(3));
                         mainTasks = taskList;
                         for (com.example.arunnagarajan.diplomate.Models.Task mtask: mainTasks) {
                             customCalendar.addAnEvent(mtask.getDate(),3,getEventDataList(3));

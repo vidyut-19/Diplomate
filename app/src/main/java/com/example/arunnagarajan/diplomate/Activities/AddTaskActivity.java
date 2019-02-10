@@ -89,8 +89,23 @@ public class AddTaskActivity extends AppCompatActivity {
         final DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
+                String month, day;
+                if(i1 + 1 < 10){
+
+                    month = "0" + i1;
+                } else {
+                    i1 = i1 + 1;
+                    month = i1 + "";
+                }
+                if(i2 < 10){
+
+                    day  = "0" + i2 ;
+                }
+
+                else day =  i2 + "";
                 dateView.setText(
-                        i2 + "-" + (i1 + 1) + "-" + i);
+                        day + "-" + (month) + "-" + i);
 
 
             }
